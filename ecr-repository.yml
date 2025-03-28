@@ -12,6 +12,7 @@ Resources:
           Effect: Allow
           Principal:
             AWS:
+            - arn:aws:iam::123456789098:root
             - arn:aws:iam::545209810301:root
             - arn:aws:iam::265671366761:root
             - arn:aws:iam::737494165703:root
