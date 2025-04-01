@@ -25,6 +25,7 @@ Resources:
             - arn:aws:iam::533267422300:root
             - arn:aws:iam::147997157422:root
             - arn:aws:iam::123456789098:root
+            - arn:aws:iam::1234567893456:root
           Action:
           - ecr:BatchCheckLayerAvailability
           - ecr:BatchGetImage
