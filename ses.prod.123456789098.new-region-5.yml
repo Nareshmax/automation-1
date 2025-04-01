@@ -48,6 +48,6 @@ Resources:
         Actions:
           - S3Action:
               BucketName: uklo-email-ses-storage
-              TopicArn: !Sub arn:aws:sns:new-region-5:${AWS::AccountId}:channels-email-ses-sns-topic-uksov
+              TopicArn: !Sub arn:aws:sns:new-region-6:${AWS::AccountId}:channels-email-ses-sns-topic-uksov
     DependsOn:
       - ReceiptRuleSet
