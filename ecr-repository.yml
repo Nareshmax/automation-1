@@ -1,10 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Creates the ECR Repository used by the Email Ingress Service.
+Description: Creates the ECR Repository used by the Email Management API.
 Resources:
-  IngressRepository:
+  ApiRepository:
     Type: AWS::ECR::Repository
+    DeletionPolicy: Retain
     Properties:
-      RepositoryName: channels-email-ingress-service
+      RepositoryName: channels-email-management-api
       RepositoryPolicyText:
         Version: "2012-10-17"
         Statement:
@@ -12,7 +13,6 @@ Resources:
           Effect: Allow
           Principal:
             AWS:
-            - arn:aws:iam::123456789098:root
             - arn:aws:iam::545209810301:root
             - arn:aws:iam::265671366761:root
             - arn:aws:iam::737494165703:root
@@ -24,9 +24,60 @@ Resources:
             - arn:aws:iam::637423616941:root
             - arn:aws:iam::533267422300:root
             - arn:aws:iam::147997157422:root
-            - arn:aws:iam::123456789098:root
-            - arn:aws:iam::1234567893456:root
           Action:
           - ecr:BatchCheckLayerAvailability
           - ecr:BatchGetImage
           - ecr:GetDownloadUrlForLayer
+  PRIntegrationRepository:
+    Type: AWS::ECR::Repository
+    DeletionPolicy: Retain
+    Properties:
+      RepositoryName: channels-email-management-api-automation-pr
+      RepositoryPolicyText:
+        Version: "2012-10-17"
+        Statement:
+        - Sid: Test, Staging & Prod
+          Effect: Allow
+          Principal:
+            AWS:
+            - arn:aws:iam::545209810301:root
+            - arn:aws:iam::265671366761:root
+            - arn:aws:iam::737494165703:root
+            - arn:aws:iam::150598861634:root
+            - arn:aws:iam::977437863335:root
+            - arn:aws:iam::635146017371:root
+            - arn:aws:iam::225195882266:root
+            - arn:aws:iam::637423616941:root
+            - arn:aws:iam::533267422300:root
+            - arn:aws:iam::147997157422:root
+          Action:
+          - ecr:BatchCheckLayerAvailability
+          - ecr:BatchGetImage
+          - ecr:GetDownloadUrlForLayer
+  AutomationRepository:
+    Type: AWS::ECR::Repository
+    DeletionPolicy: Retain
+    Properties:
+      RepositoryName: channels-email-management-api-automation
+      RepositoryPolicyText:
+        Version: "2012-10-17"
+        Statement:
+        - Sid: Test, Staging & Prod
+          Effect: Allow
+          Principal:
+            AWS:
+            - arn:aws:iam::545209810301:root
+            - arn:aws:iam::265671366761:root
+            - arn:aws:iam::737494165703:root
+            - arn:aws:iam::150598861634:root
+            - arn:aws:iam::977437863335:root
+            - arn:aws:iam::635146017371:root
+            - arn:aws:iam::225195882266:root
+            - arn:aws:iam::637423616941:root
+            - arn:aws:iam::533267422300:root
+            - arn:aws:iam::147997157422:root
+          Action:
+          - ecr:BatchCheckLayerAvailability
+          - ecr:BatchGetImage
+          - ecr:GetDownloadUrlForLayer
+  
